@@ -1,4 +1,6 @@
-package book.tobyspring31.ch1.user.dao;
+package book.tobyspring31.ch1.user.dao.connectionmaker;
+
+import book.tobyspring31.ch1.user.dao.connectionmaker.ConnectionMaker;
 
 import java.sql.Connection;
 import java.sql.SQLException;

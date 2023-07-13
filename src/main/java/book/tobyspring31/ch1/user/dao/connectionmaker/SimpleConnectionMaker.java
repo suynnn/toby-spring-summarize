@@ -1,4 +1,4 @@
-package book.tobyspring31.ch1.user.dao;
+package book.tobyspring31.ch1.user.dao.connectionmaker;
 
 import java.sql.Connection;
 import java.sql.DriverManager;

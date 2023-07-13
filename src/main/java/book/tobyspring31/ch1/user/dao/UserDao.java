@@ -1,5 +1,6 @@
 package book.tobyspring31.ch1.user.dao;
 
+import book.tobyspring31.ch1.user.dao.connectionmaker.ConnectionMaker;
 import book.tobyspring31.ch1.user.domain.User;
 
 import java.sql.*;
