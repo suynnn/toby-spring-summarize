@@ -13,6 +13,18 @@ public class UserDao {
         this.connectionMaker = connectionMaker;
     }
 
+    // 싱글톤 코드
+    /*private static UserDao INSTANCE;
+
+    private UserDao(ConnectionMaker connectionMaker) {
+        this.connectionMaker = connectionMaker;
+    }
+
+    public static synchronized UserDao getInstance() {
+        if (INSTANCE == null) INSTANCE = new UserDao(???);
+        return INSTANCE;
+    }*/
+
     public void add(User user) throws ClassNotFoundException, SQLException {
         Connection c = connectionMaker.makeConnection();
 
