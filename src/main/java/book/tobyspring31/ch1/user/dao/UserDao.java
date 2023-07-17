@@ -2,6 +2,7 @@ package book.tobyspring31.ch1.user.dao;
 
 import book.tobyspring31.ch1.user.dao.connectionmaker.ConnectionMaker;
 import book.tobyspring31.ch1.user.domain.User;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
 import java.sql.*;
 
@@ -9,21 +10,12 @@ public class UserDao {
 
     private ConnectionMaker connectionMaker;
 
-    public UserDao(ConnectionMaker connectionMaker) {
-        this.connectionMaker = connectionMaker;
+    // 의존관계 검색 이용 생성자
+    public UserDao() {
+        AnnotationConfigApplicationContext context =
+                new AnnotationConfigApplicationContext(DaoFactory.class);
+        this.connectionMaker = context.getBean("connectionMaker", ConnectionMaker.class);
     }
-
-    // 싱글톤 코드
-    /*private static UserDao INSTANCE;
-
-    private UserDao(ConnectionMaker connectionMaker) {
-        this.connectionMaker = connectionMaker;
-    }
-
-    public static synchronized UserDao getInstance() {
-        if (INSTANCE == null) INSTANCE = new UserDao(???);
-        return INSTANCE;
-    }*/
 
     public void add(User user) throws ClassNotFoundException, SQLException {
         Connection c = connectionMaker.makeConnection();
@@ -65,5 +57,4 @@ public class UserDao {
         return user;
     }
 
-    //public abstract Connection getConnection() throws ClassNotFoundException, SQLException;
 }
