@@ -2,7 +2,6 @@ package book.tobyspring31.ch1.user.dao;
 
 import book.tobyspring31.ch1.user.dao.connectionmaker.ConnectionMaker;
 import book.tobyspring31.ch1.user.domain.User;
-import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
 import java.sql.*;
 
@@ -10,15 +9,13 @@ public class UserDao {
 
     private ConnectionMaker connectionMaker;
 
-    // 의존관계 검색 이용 생성자
-    public UserDao() {
-        AnnotationConfigApplicationContext context =
-                new AnnotationConfigApplicationContext(DaoFactory.class);
-        this.connectionMaker = context.getBean("connectionMaker", ConnectionMaker.class);
+    public UserDao(ConnectionMaker connectionMaker) {
+        this.connectionMaker = connectionMaker;
     }
 
     public void add(User user) throws ClassNotFoundException, SQLException {
-        Connection c = connectionMaker.makeConnection();
+        Connection c = connectionMaker.makeConnection();    // CountingConnectionMaker의 makeConnection()이
+                                                            // 반환하는 DConnection 오브젝트가 c에 넣어짐
 
         PreparedStatement ps = c.prepareStatement(
                 "insert into user(id, name, password) values (?, ?, ?)"
