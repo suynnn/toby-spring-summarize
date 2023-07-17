@@ -18,7 +18,7 @@ public class UserDao {
                                                             // 반환하는 DConnection 오브젝트가 c에 넣어짐
 
         PreparedStatement ps = c.prepareStatement(
-                "insert into user(id, name, password) values (?, ?, ?)"
+                "insert into users(id, name, password) values (?, ?, ?)"
         );
 
         ps.setString(1, user.getId());
