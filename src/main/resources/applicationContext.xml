@@ -10,6 +10,11 @@
     </bean>
 
     <bean id="dataSource"
-          class="org.springframework.jdbc.datasource.SimpleDriverDataSource" />
+          class="org.springframework.jdbc.datasource.SimpleDriverDataSource">
+        <property name="driverClass" value="org.h2.Driver" />
+        <property name="url" value="jdbc:h2:tcp://localhost/~/files/h2Data/toby"/>
+        <property name="username" value="spring"/>
+        <property name="password" value="1234"/>
+    </bean>
 
 </beans>
