@@ -19,6 +19,7 @@ dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 	implementation 'com.h2database:h2'
+	implementation group: 'org.springframework', name: 'spring-jdbc', version: '5.2.0.RELEASE'
 }
 
 tasks.named('test') {

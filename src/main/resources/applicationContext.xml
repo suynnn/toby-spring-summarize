@@ -6,7 +6,10 @@
     <bean id="connectionMaker" class="book.tobyspring31.ch1.user.dao.connectionmaker.DConnectionMaker" />
 
     <bean id="userDao" class="book.tobyspring31.ch1.user.dao.UserDao">
-        <property name="connectionMaker" ref="connectionMaker" />
+        <property name="dataSource" ref="dataSource" />
     </bean>
+
+    <bean id="dataSource"
+          class="org.springframework.jdbc.datasource.SimpleDriverDataSource" />
 
 </beans>

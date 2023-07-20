@@ -1,23 +1,22 @@
 package book.tobyspring31.ch1.user.dao;
 
-import book.tobyspring31.ch1.user.dao.connectionmaker.ConnectionMaker;
 import book.tobyspring31.ch1.user.domain.User;
 
+import javax.sql.DataSource;
 import java.sql.*;
 
 public class UserDao {
 
-    private ConnectionMaker connectionMaker;
+    private DataSource dataSource;
 
     public UserDao() {}
 
-    public void setConnectionMaker(ConnectionMaker connectionMaker) {
-        this.connectionMaker = connectionMaker;
+    public void setDataSource(DataSource dataSource) {
+        this.dataSource = dataSource;
     }
 
-    public void add(User user) throws ClassNotFoundException, SQLException {
-        Connection c = connectionMaker.makeConnection();    // CountingConnectionMaker의 makeConnection()이
-                                                            // 반환하는 DConnection 오브젝트가 c에 넣어짐
+    public void add(User user) throws SQLException {
+        Connection c = dataSource.getConnection();
 
         PreparedStatement ps = c.prepareStatement(
                 "insert into users(id, name, password) values (?, ?, ?)"
@@ -33,8 +32,8 @@ public class UserDao {
         c.close();
     }
 
-    public User get(String id) throws ClassNotFoundException, SQLException {
-        Connection c = connectionMaker.makeConnection();
+    public User get(String id) throws SQLException {
+        Connection c = dataSource.getConnection();
 
         PreparedStatement ps = c.prepareStatement(
                 "select * from users where id = ?"
